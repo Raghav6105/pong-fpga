@@ -1,0 +1,45 @@
+module vga_sync(
+    input wire clk,
+    input wire reset,
+    output wire hsync,
+    output wire vsync,
+    output wire video_on,
+    output wire [9:0] pixel_x,
+    output wire [9:0] pixel_y
+);
+
+reg [9:0] h_count = 0;
+reg [9:0] v_count = 0;
+
+always @(posedge clk or posedge reset)
+begin
+    if(reset)
+    begin
+        h_count <= 0;
+        v_count <= 0;
+    end
+    else
+    begin
+        if(h_count == 799)
+        begin
+            h_count <= 0;
+
+            if(v_count == 524)
+                v_count <= 0;
+            else
+                v_count <= v_count + 1;
+        end
+        else
+            h_count <= h_count + 1;
+    end
+end
+
+assign video_on = (h_count < 640) && (v_count < 480);
+
+assign hsync = ~(h_count >= 656 && h_count < 752);
+assign vsync = ~(v_count >= 490 && v_count < 492);
+
+assign pixel_x = h_count;
+assign pixel_y = v_count;
+
+endmodule
