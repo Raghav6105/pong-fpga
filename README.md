@@ -10,10 +10,11 @@ This project handles VGA synchronization, game logic, paddle movement, and score
 * **Inputs:** Push buttons on the FPGA for paddle control
 
 ## Block diagrams
+<img width="601" height="745" alt="image" src="https://github.com/user-attachments/assets/5b9a71df-193c-49c0-a74e-2396e1ee4815" />
 
 
 ## Algorithmic Overview
-
+<img width="599" height="1432" alt="image" src="https://github.com/user-attachments/assets/d7f17df6-8f84-400e-8ba4-1c49150b1407" />
 
 
 ## File Structure
